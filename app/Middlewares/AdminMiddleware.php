@@ -3,7 +3,6 @@
 namespace Middlewares;
 
 use src\Auth\Auth;
-
 class AdminMiddleware
 {
     public function handle()
