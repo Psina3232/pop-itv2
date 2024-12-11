@@ -4,11 +4,11 @@
  */
 ?>
 
-<h2>Выбор подразделения</h2>
+<h2 style="text-align:center">Выбор состава</h2>
 <form method="get" class='d-flex justify-content-center'>
 <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
          <div class='column border border-5 border-dark center rounded-3 column'>
-            <label>Подразделение</label>
+            <label>Составы</label>
             <select name="subdivision">
                <?php if (isset($subdivisions)): ?>
                   <?php foreach ($subdivisions as $subdivision): ?>
@@ -25,6 +25,5 @@
             <?php endif; ?>
                
             <button id="subunit_button">Выбор</button>
-            <br>
                </div>
 </form> 

@@ -8,6 +8,7 @@ use Src\Request;
 use Src\Auth\Auth;
 use Model\User;
 use Model\Role;
+// use Model\Department;
 use Model\Employees;
 use Model\Subunit;
 use Src\Validator\Validator;
@@ -79,27 +80,39 @@ class Site
 
     public function employees(Request $request): string
     {
-        if($request->method === 'POST'){
+        if ($request->method === 'POST') {
             $properties = [
                 "login" => $request->all()["login"],
-                "password" => $request->all()["password"],
+                "password" => password_hash($request->all()["password"], PASSWORD_BCRYPT), // Хэшируем пароль
                 "role" => 2
             ];
-
-            if (User::create($properties)) {
-                app()->route->redirect('/employees');
+    
+            try {
+                // Попытка создать пользователя
+                if (User::create($properties)) {
+                    app()->route->redirect('/employees');
+                }
+            } catch (\Illuminate\Database\QueryException $e) {
+                if ($e->getCode() === '23000') {
+                    $errorMessage = 'Такой логин уже существует. Пожалуйста, выберите другой.';
+                } else {
+                    throw $e;
+                }
             }
         }
+    
         $users = User::all();
-        $roles = role::all();
+        $roles = Role::all();
         $subunits = Subunit::all();
-
+    
         return new View('site.employees', [
-            'subunits' => $subunits, 
-            'users' => $users, 
-            'roles' => $roles
+            'subunits' => $subunits,
+            'users' => $users,
+            'roles' => $roles,
+            'errorMessage' => $errorMessage ?? null, 
         ]);
     }
+    
 
     public function emp(Request $request): string
     {
@@ -130,6 +143,7 @@ class Site
         ]);
     }
 
+
     public function subunit(Request $request): string
     {
         $subunits = Subunit::all();
@@ -139,23 +153,6 @@ class Site
 
         return new View('site.subunit', ['subunits' => $subunits]);
     }
-
-
-    // public function assign_an_employee(Request $request): string
-    // {
-
-    //     //Если просто обращение к странице, то отобразить форму
-    //     if ($request->method === 'GET') {
-    //         return new View('site.assign_an_employee');
-    //     }
-
-    //     //Если удалось аутентифицировать пользователя, то редирект
-    //     if (Auth::attempt($request->all())) {
-    //         app()->route->redirect('/hello');
-    //     }
-    //     //Если аутентификация не удалась, то сообщение об ошибке
-    //     return new View('site.hello', ['message' => 'hello working']);
-    // }
 
     public function calculate(Request $request): string
     {
@@ -218,5 +215,30 @@ class Site
             "subdivisions" => $subunits,
         ]);
     }
+
+//     public function department(Request $request): string
+// {
+//     $departments = Department::all();
+//     $errorMessage = null;
+
+//     if ($request->method === 'POST') {
+//         $name = $request->all()["name"];
+
+//         if (Department::where('name', $name)->exists()) {
+//             $errorMessage = 'Отдел с таким названием уже существует.';
+//         } else {
+            
+//             if (Department::create(['name' => $name])) {
+//                 app()->route->redirect('/hello');
+//             }
+//         }
+//     }
+
+//     return new View('site.department', [
+//         'departments' => $departments,
+//         'errorMessage' => $errorMessage,
+//     ]);
+// }
+
 
 }

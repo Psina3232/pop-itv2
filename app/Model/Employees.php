@@ -15,6 +15,7 @@ class Employees extends Model
         'Gender',
         'Date_of_Birth',
         'Address',
+        // 'department_id',
         'Subunit_ID',
         'Users_ID',
         'Age'

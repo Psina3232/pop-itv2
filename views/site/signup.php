@@ -1,4 +1,4 @@
-<h2>Регистрация нового пользователя</h2>
+<h2 style="text-align:center">Регистрация нового пользователя</h2>
 <h3><?= $message ?? ''; ?></h3>
 <form method="post">
    <div class>
@@ -10,14 +10,12 @@
    <label><input type="text" name="subunit"placeholder="Подразделение"></label>
    <label><input type="text" name="login"placeholder="Логин"></label>
    <label><input type="password" name="password"placeholder="Пароль"></label>
-   <label>Отдел
       <select name="role">
          <option value="">Выберите отдел</option>
          <?php foreach($roles as $role): ?>
             <option value="<?= $role->getId() ?>"><?= $role->name ?></option>
          <?php endforeach; ?>
       </select>
-   </label>
    <button>Зарегистрироваться</button>
          </div>
    

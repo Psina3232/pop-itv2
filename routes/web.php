@@ -23,5 +23,5 @@ Route::add(['GET', 'POST'], '/calculate', [Controller\Site::class, 'calculate'])
    ->middleware('auth', "hr");
 Route::add(['GET', 'POST'], '/subunit_sel', [Controller\Site::class, 'subunit_sel'])
    ->middleware('auth', "hr");
-// Route::add(['GET', 'POST'], '/assign_an_employee', [Controller\Site::class, 'assign_an_employee'])
-//    ->middleware('auth', "hr");
+// Route::add(['GET', 'POST'], '/department', [Controller\Site::class, 'department'])
+// ->middleware('auth', "hr");

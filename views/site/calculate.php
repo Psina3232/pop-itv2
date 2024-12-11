@@ -1,4 +1,4 @@
-<h2>Подсчет среднего возраста</h2>
+<h2 style="text-align:center">Подсчет среднего возраста</h2>
 <form method="post">
    <div class='midle column border border-5 border-dark center rounded-3 column'>
 <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>

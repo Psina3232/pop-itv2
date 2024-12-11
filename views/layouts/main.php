@@ -12,27 +12,21 @@
 </head>
 <body class="">
   <div class="d-flex">
-   <nav class="">
+   <nav class="nav">
        <a href ="<?= app()->route->getUrl('/hello') ?>">Главная</a>
        <?php if (app()->auth::check()): ?>
             <!-- <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->login ?>)</a> -->
             <?php if (app()->auth::role() == "admin"): ?>
-                <!-- <h3>Функции сотрудника</h3> -->
-                <a href="<?= app()->route->getUrl('/emp') ?>">Создать сотрудника</a>
-                <a href="<?= app()->route->getUrl('/subunit') ?>">Создать подразделение</a>
-                <!-- <a href="<?= app()->route->getUrl('/assign_an_employee') ?>">Прикрепить сотрудника</a> -->
-                <a href="<?= app()->route->getUrl('/calculate') ?>">Подсчет среднего возраста</a>
-                <a href="<?= app()->route->getUrl('/subunit_sel') ?>">Выбор по подразделениям</a>
                 <!-- <h3>Функции админа</h3> -->
-                <a href="<?= app()->route->getUrl('/employees') ?>">Создать сотрудника отдела</a>
+                <a href="<?= app()->route->getUrl('/employees') ?>">Добавить сотрудника отдела</a>
                 <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->login ?>)</a>
             <?php elseif (app()->auth::role() == "hr"): ?>
               <!-- <h3>Функции сотрудника</h3> -->
-                <a href="<?= app()->route->getUrl('/emp') ?>">Создать сотрудника</a>
-                <a href="<?= app()->route->getUrl('/subunit') ?>">Создать подразделение</a>
-                <!-- <a href="<?= app()->route->getUrl('/assign_an_employee') ?>">Прикрепить сотрудника</a> -->
+                <a href="<?= app()->route->getUrl('/emp') ?>">Добавить сотрудника</a>
+                <!-- <a href="<?= app()->route->getUrl('/department') ?>">Добавить подразделение</a> -->
+                <a href="<?= app()->route->getUrl('/subunit') ?>">Добавить состав</a>
+                <a href="<?= app()->route->getUrl('/subunit_sel') ?>">Выбор по составу</a>
                 <a href="<?= app()->route->getUrl('/calculate') ?>">Подсчет среднего возраста</a>
-                <a href="<?= app()->route->getUrl('/subunit_sel') ?>">Выбор по подразделениям</a>
                 <a href="<?= app()->route->getUrl('/logout') ?>">Выход (<?= app()->auth::user()->login ?>)</a>
             <?php endif; ?>
        <?php else: ?>
@@ -50,9 +44,18 @@
         background-color: white;
         padding: 10px 0;
     }
+    .nav{
+      background-color: #2c2c2c;
+      width: 100%;
+      height:5vh;
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+}
    a{
-      color: black;
+      color: white;
       margin-left: 25px;
+      text-decoration: none;
    }
    .center{
     text-align: center;
