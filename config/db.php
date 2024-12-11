@@ -1,6 +1,5 @@
 <?php
 return [
-   
    'driver' => 'mysql',
    'host' => 'localhost',
    'database' => 'mvc',
