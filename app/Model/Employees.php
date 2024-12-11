@@ -20,6 +20,7 @@ class Employees extends Model
         'Age'
     ];
  
+
    use HasFactory;
    public $timestamps = false;
    public function getId(): int

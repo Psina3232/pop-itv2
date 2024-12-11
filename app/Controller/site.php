@@ -90,7 +90,6 @@ class Site
                 app()->route->redirect('/employees');
             }
         }
-        
         $users = User::all();
         $roles = role::all();
         $subunits = Subunit::all();
