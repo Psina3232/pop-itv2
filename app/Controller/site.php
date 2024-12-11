@@ -11,7 +11,6 @@ use Model\Role;
 use Model\Employees;
 use Model\Subunit;
 use Src\Validator\Validator;
-
 class Site
 {
     public function index(Request $request): string
