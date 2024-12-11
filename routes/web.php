@@ -14,6 +14,7 @@ Route::add('GET', '/logout', [Controller\Site::class, 'logout']);
 Route::add(['GET', 'POST'], '/employees', [Controller\Site::class, 'employees'])
    ->middleware('auth', "admin");
 
+   
 // HR
 Route::add(['GET', 'POST'], '/emp', [Controller\Site::class, 'emp'])
    ->middleware('auth', "hr");
